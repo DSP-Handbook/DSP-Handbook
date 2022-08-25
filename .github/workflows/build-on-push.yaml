@@ -22,12 +22,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: ensure permission
-        run: chmod +x ./make.py
+        run: chmod +x ./make.sh
       - name: compile
         uses: dante-ev/latex-action@latest
         with:
-          entrypoint: ./make.py
-          args: build
+          entrypoint: ./make.sh
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
