@@ -1,0 +1,64 @@
+\documentclass{book}
+
+\usepackage[UTF8]{ctex}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{xurl}
+\usepackage{xcolor}
+\usepackage{scrtime}
+\usepackage{hyperref}
+
+
+\hypersetup{colorlinks}
+
+\title{戴森球计划手册}
+\author{HuangFuSL}
+
+\ifx\commitId\undefined
+    \providecommand{\commitId}{草稿}
+\fi
+
+\newcommand{\objimg}[2]{\includegraphics[height=1.5cm]{./imgs/#2/#1.png}}
+
+\newcommand{\itemimg}[1]{\objimg{#1}{items}}
+\newcommand{\techimg}[1]{\objimg{#1}{techs}}
+\newcommand{\buildingimg}[1]{\objimg{#1}{buildings}}
+\newcommand{\upgradeimg}[1]{\objimg{#1}{upgrades}}
+
+\begin{document}
+    \begin{titlepage}
+        \begin{center}
+            \vspace*{1cm}
+    
+            \textbf{\Huge 戴森球计划手册}
+                
+            \vspace{1.5cm}
+    
+            \textsc{\Large HuangFuSL}
+    
+            \vfill
+                
+            \textsc{https://github.com/DSP-Handbook/DSP-Handbook}
+
+            \commitId 版本编译于\today\thistime
+                
+        \end{center}
+
+    \end{titlepage}
+    \tableofcontents
+    \input{chap-target}
+    \input{chap-spheres}
+    \input{chap-items}
+    \input{chap-buildings}
+    \input{chap-production}
+    \input{chap-techonology}
+    \input{chap-upgrades}
+    \input{chap-dyson-sphere}
+
+    \appendix
+    \input{appendix/copyright}
+    \input{appendix/statement}
+    \input{appendix/patch-notes}
+    \input{appendix/updates}
+    \input{appendix/index}
+\end{document}
