@@ -24,7 +24,7 @@ jobs:
       - name: compile
         uses: dante-ev/latex-action@latest
         with:
-          entrypoint: ./make.sh
+          entrypoint: ./make.py
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

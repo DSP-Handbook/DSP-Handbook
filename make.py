@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 """ make.py for DSP-Handbook"""
 
 if __name__ == "__main__":
