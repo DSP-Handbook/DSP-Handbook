@@ -1,1 +1,1 @@
-@python ./make.py build
+@python ./make.py --action=build

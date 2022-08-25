@@ -9,10 +9,8 @@ if __name__ == "__main__":
     import glob
     import itertools
 
-    parser = argparse.ArgumentParser(
-        description="Build Document", add_help=False
-    )
-    parser.add_argument("action", choices=["build", "clean", "help"])
+    parser = argparse.ArgumentParser(description="Build Document")
+    parser.add_argument("--action", default="build", required=False, choices=["build", "clean"])
     action = parser.parse_args().action
 
     if action == "build":
@@ -37,5 +35,3 @@ if __name__ == "__main__":
         for _ in itertools.chain(*map(glob.glob, map(lambda ext: f"**/*{ext}", exts))):
             os.remove(_)
         shutil.rmtree("build", ignore_errors=True)
-    else:
-        parser.print_help()
