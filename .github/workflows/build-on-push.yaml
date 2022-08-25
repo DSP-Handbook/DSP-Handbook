@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: ensure permission
+        run: chmod +x ./make.py
       - name: compile
         uses: dante-ev/latex-action@latest
         with:
