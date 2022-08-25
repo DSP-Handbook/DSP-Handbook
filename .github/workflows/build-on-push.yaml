@@ -1,0 +1,32 @@
+name: Build Handbook
+
+on: 
+  push:
+    branches:
+      - main
+      - test-actions
+  pull_request:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  
+  build_latex:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: compile
+        uses: dante-ev/latex-action@latest
+        with:
+          entrypoint: python3 ./make.py build
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PUBLISH_TOKEN }}
+          publish_dir: ./build
