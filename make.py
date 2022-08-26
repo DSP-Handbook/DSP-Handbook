@@ -1,5 +1,5 @@
 #! /usr/bin/python3
-""" make.py for DSP-Handbook"""
+""" make.py for DSP-Handbook """
 
 if __name__ == "__main__":
     import os
