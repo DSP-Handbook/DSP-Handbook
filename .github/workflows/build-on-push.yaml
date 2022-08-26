@@ -26,7 +26,7 @@ jobs:
         with:
           root_file: main.tex
           working_directory: src/
-          args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode -usepretex="\providecommand{\commitId}{$GITHUB_SHA:0:7}"
+          args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode -usepretex="\providecommand{\commitId}{${GITHUB_SHA:0:7}}"
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
