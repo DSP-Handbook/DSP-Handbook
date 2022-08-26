@@ -1,4 +1,5 @@
-""" make.py for DSP-Handbook"""
+#! /usr/bin/python3
+""" make.py for DSP-Handbook """
 
 if __name__ == "__main__":
     import os
@@ -8,10 +9,8 @@ if __name__ == "__main__":
     import glob
     import itertools
 
-    parser = argparse.ArgumentParser(
-        description="Build Document", add_help=False
-    )
-    parser.add_argument("action", choices=["build", "clean", "help"])
+    parser = argparse.ArgumentParser(description="Build Document")
+    parser.add_argument("--action", default="build", required=False, choices=["build", "clean"])
     action = parser.parse_args().action
 
     if action == "build":
@@ -21,8 +20,8 @@ if __name__ == "__main__":
         ).stdout.decode("utf-8").strip()
         for _ in range(2):
             subprocess.run([
-                "xelatex",
-                fr'\providecommand{{\commitId}}{{{commit_id}}}\input{{main}}'
+                "latexmk", "-xelatex", 
+                fr'-usepretex="\providecommand{{\commitId}}{{{commit_id}}}"', "main.tex"
             ], check=True)
 
         if not os.path.exists("../build"):
@@ -30,11 +29,9 @@ if __name__ == "__main__":
         shutil.copy('main.pdf', '../build')
     elif action == "clean":
         exts = [
-            ".aux", ".log", ".out", ".pdf", ".bcf",
-            ".run.xml", ".toc", ".ptc", ".synctex.gz"
+            ".aux", ".log", ".out", ".bcf",
+            ".run.xml", ".toc", ".ptc", ".synctex.gz",
+            ".dvi", ".fdb_latexmk", ".fls", ".xdv"
         ]
         for _ in itertools.chain(*map(glob.glob, map(lambda ext: f"**/*{ext}", exts))):
             os.remove(_)
-        shutil.rmtree("build", ignore_errors=True)
-    else:
-        parser.print_help()
