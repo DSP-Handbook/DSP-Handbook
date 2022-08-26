@@ -29,7 +29,7 @@ jobs:
         with:
           root_file: main.tex
           working_directory: src/
-          args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode -usepretex="\providecommand{\commitId}{${{ steps.sha.outputs.sha_short }}}"
+          args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode -usepretex=\providecommand{\commitId}{${{ steps.sha.outputs.sha_short }}}
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
