@@ -31,7 +31,7 @@ jobs:
           working_directory: src/
           args: -xelatex -dvi- -time -latexoption=-file-line-error -output-directory=../build/ -latexoption=-interaction=nonstopmode -usepretex=\providecommand{\commitId}{${{ steps.sha.outputs.sha_short }}}
       - name: clean up
-        run: ./make.py --action clean
+        run: rm *.aux *.fls *.xdv *.toc *.log *.out *.fdb_latexmk
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
