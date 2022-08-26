@@ -21,12 +21,22 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: ensure permission
-        run: chmod +x ./make.sh
+      - name: commid-id
+        id: commit
+        uses: fufuhu/get-commit-id
+        with:
+          # The directory path of the checked-out repository 
+          path: ./ # This is the default value.
       - name: compile
         uses: dante-ev/latex-action@latest
         with:
-          entrypoint: ./make.sh
+          compiler: xelatex
+          root_file: main.tex
+          working_directory: src/
+          args: -xelatex |
+            -latexoption=-file-line-error |
+            -latexoption=-interaction=nonstopmode |
+            -usepretex="\providecommand{\commitId}{ ${{ steps.commit.outputs.short_commit_id }} }"
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
