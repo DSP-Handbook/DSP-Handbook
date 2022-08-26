@@ -29,10 +29,9 @@ if __name__ == "__main__":
         shutil.copy('main.pdf', '../build')
     elif action == "clean":
         exts = [
-            ".aux", ".log", ".out", ".pdf", ".bcf",
+            ".aux", ".log", ".out", ".bcf",
             ".run.xml", ".toc", ".ptc", ".synctex.gz",
             ".dvi", ".fdb_latexmk", ".fls", ".xdv"
         ]
         for _ in itertools.chain(*map(glob.glob, map(lambda ext: f"**/*{ext}", exts))):
             os.remove(_)
-        shutil.rmtree("build", ignore_errors=True)
