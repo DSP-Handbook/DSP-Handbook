@@ -20,8 +20,8 @@ if __name__ == "__main__":
         ).stdout.decode("utf-8").strip()
         for _ in range(2):
             subprocess.run([
-                "xelatex",
-                fr'\providecommand{{\commitId}}{{{commit_id}}}\input{{main}}'
+                "latexmk", "-xelatex", 
+                fr'-usepretex="\providecommand{{\commitId}}{{{commit_id}}}"', "main.tex"
             ], check=True)
 
         if not os.path.exists("../build"):
@@ -30,7 +30,8 @@ if __name__ == "__main__":
     elif action == "clean":
         exts = [
             ".aux", ".log", ".out", ".pdf", ".bcf",
-            ".run.xml", ".toc", ".ptc", ".synctex.gz"
+            ".run.xml", ".toc", ".ptc", ".synctex.gz",
+            ".dvi", ".fdb_latexmk", ".fls", ".xdv"
         ]
         for _ in itertools.chain(*map(glob.glob, map(lambda ext: f"**/*{ext}", exts))):
             os.remove(_)
