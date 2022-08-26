@@ -21,12 +21,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: commid-id
-        id: commit
-        uses: fufuhu/get-commit-id
-        with:
-          # The directory path of the checked-out repository 
-          path: ./ # This is the default value.
       - name: compile
         uses: dante-ev/latex-action@latest
         with:
@@ -36,7 +30,7 @@ jobs:
           args: -xelatex |
             -latexoption=-file-line-error |
             -latexoption=-interaction=nonstopmode |
-            -usepretex="\providecommand{\commitId}{ ${{ steps.commit.outputs.short_commit_id }} }"
+            -usepretex="\providecommand{\commitId}{ ${{ github.sha::7 }} }"
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
