@@ -35,6 +35,8 @@ jobs:
           root_file: main.tex
           working_directory: src/
           args: -xelatex -dvi- -time -latexoption=-file-line-error -output-directory=../build/ -latexoption=-interaction=nonstopmode
+      - name: debug
+        run: ll -a build
       - name: build index
         run: zhmakeindex/bin/linux_x64/zhmakeindex -s src/index-entry.ist -z pinyin build/main.idx
       - name: build
