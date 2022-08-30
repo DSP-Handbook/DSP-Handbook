@@ -1,10 +1,9 @@
 name: Build Handbook
-
 on: 
   push:
     branches:
       - main
-
+      - add-zhmakeindex-action
 permissions:
   contents: read
   pages: write
@@ -22,7 +21,23 @@ jobs:
       - name: commit SHA
         id: sha
         run: echo "::set-output name=sha_short::${GITHUB_SHA:0:7}"
-      - name: compile
+      - name: fetch zhmakeindex
+        uses: robinraju/release-downloader@v1.4
+        with:
+          repository: leo-liu/zhmakeindex
+          tag: zhmakeindex-1.2
+          fileName: zhmakeindex-1.2.zip
+      - name: unpack and setup
+        run: unzip zhmakeindex-1.2.zip && chmod +x zhmakeindex/bin/linux_x64/zhmakeindex
+      - name: pre-compile
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: main.tex
+          working_directory: src/
+          args: -xelatex -dvi- -time -latexoption=-file-line-error -output-directory=../build/ -latexoption=-interaction=nonstopmode
+      - name: build index
+        run: zhmakeindex/bin/linux_x64/zhmakeindex -s src/index-entry.ist -z pinyin build/main.idx
+      - name: build
         uses: dante-ev/latex-action@latest
         with:
           root_file: main.tex
