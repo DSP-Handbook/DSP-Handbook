@@ -38,7 +38,7 @@ jobs:
       - name: debug
         run: ls -al build
       - name: build index
-        run: chmod -R 666 build && zhmakeindex/bin/linux_x64/zhmakeindex -s src/index-entry.ist -z pinyin build/main.idx
+        run: sudo chmod -R 666 build && zhmakeindex/bin/linux_x64/zhmakeindex -s src/index-entry.ist -z pinyin build/main.idx
       - name: build
         uses: dante-ev/latex-action@latest
         with:
