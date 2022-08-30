@@ -2,14 +2,24 @@
 
 \usepackage[UTF8]{ctex}
 \usepackage{graphicx}
+\usepackage{booktabs}
 \usepackage{enumerate}
 \usepackage{xurl}
 \usepackage{xcolor}
 \usepackage{scrtime}
+\usepackage{setspace}
+\usepackage[font={bf,stretch=1}]{caption}
+\usepackage{makeidx}
+\usepackage{menukeys}
+\usepackage{threeparttable}
+\usepackage{array}
+\usepackage{subfigure}
+\usepackage[noautomatic]{imakeidx}
 \usepackage{hyperref}
 
 
 \hypersetup{colorlinks}
+\makeindex[intoc]
 
 \title{戴森球计划手册}
 \author{HuangFuSL}
@@ -19,11 +29,15 @@
 \fi
 
 \newcommand{\objimg}[2]{\includegraphics[height=1.5cm]{./imgs/#2/#1.png}}
-
 \newcommand{\itemimg}[1]{\objimg{#1}{items}}
 \newcommand{\techimg}[1]{\objimg{#1}{techs}}
 \newcommand{\buildingimg}[1]{\objimg{#1}{buildings}}
 \newcommand{\upgradeimg}[1]{\objimg{#1}{upgrades}}
+\newcommand{\starimg}[1]{\objimg{#1}{stars}}
+\newcommand{\planetimg}[1]{\objimg{#1}{planets}}
+
+\setstretch{1.5}
+\renewcommand\arraystretch{1.25}
 
 \begin{document}
     \begin{titlepage}
