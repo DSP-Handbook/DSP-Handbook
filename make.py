@@ -31,7 +31,8 @@ if __name__ == "__main__":
         exts = [
             ".aux", ".log", ".out", ".bcf",
             ".run.xml", ".toc", ".ptc", ".synctex.gz",
-            ".dvi", ".fdb_latexmk", ".fls", ".xdv"
+            ".dvi", ".fdb_latexmk", ".fls", ".xdv",
+            ".idx", ".ilg"
         ]
         for _ in itertools.chain(*map(glob.glob, map(lambda ext: f"**/*{ext}", exts))):
             os.remove(_)
