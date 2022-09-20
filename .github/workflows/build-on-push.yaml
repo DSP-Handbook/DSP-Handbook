@@ -35,6 +35,8 @@ jobs:
           root_file: main.tex
           working_directory: src/
           args: -xelatex -dvi- -time -latexoption=-file-line-error -output-directory=../build/ -latexoption=-interaction=nonstopmode
+      - name: debug
+        run: ls ‐ahl build
       - name: build index
         run: zhmakeindex/bin/linux_x64/zhmakeindex -s src/index-style.ist -z pinyin build/main.idx
       - name: build
@@ -43,8 +45,6 @@ jobs:
           root_file: main.tex
           working_directory: src/
           args: -xelatex -dvi- -time -latexoption=-file-line-error -output-directory=../build/ -latexoption=-interaction=nonstopmode -usepretex=\providecommand{\commitId}{${{ steps.sha.outputs.sha_short }}}
-      - name: debug
-        run: ls -al build
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
