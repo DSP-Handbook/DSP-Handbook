@@ -44,7 +44,7 @@ jobs:
           working_directory: src/
           args: -xelatex -dvi- -time -latexoption=-file-line-error -output-directory=../build/ -latexoption=-interaction=nonstopmode -usepretex=\providecommand{\commitId}{${{ steps.sha.outputs.sha_short }}}
       - name: debug
-        run: sudo chown runner build && ls -al build
+        run: sudo chown -R runner build && sudo chmod -R 666 build && ls -al build
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
